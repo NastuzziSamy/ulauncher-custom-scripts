@@ -26,10 +26,10 @@ class KeywordQueryEventListener(EventListener):
         if not launcher.has_config():
             return RenderResultListAction(no_config_items())
 
-        if not launcher.has_query():
-            return RenderResultListAction(show_used_args(launcher))
-
-        results = launcher.execute()
+        if launcher.has_query():
+            results = launcher.execute()
+        else:
+            results = launcher.get_first_scripts()
 
         if not results:
             return RenderResultListAction(no_results_item())

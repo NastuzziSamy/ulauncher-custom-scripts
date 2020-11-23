@@ -7,3 +7,5 @@ SCRIPT_FILE = 'scripts.json'
 SCRIPT_PATH = os.path.expanduser('~/.config/ulauncher/') + SCRIPT_FILE
 
 DEFAULT_CONFIG_PATH = EXTENSION_DIR + '/config/' + SCRIPT_FILE
+
+MAX_SCRIPTS = 10

@@ -1,3 +1,5 @@
+import os
+
 from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
 from ulauncher.api.shared.action.CopyToClipboardAction import CopyToClipboardAction
 from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
@@ -27,14 +29,26 @@ def no_results_item():
     ]
 
 
+def get_icon(icon):
+    icon = icon or ICON_FILE
+
+    if icon.startswith('~'):
+        icon = os.path.expanduser(icon)
+    
+    if not icon.startswith('/') or not os.path.exists(icon):
+        return ICON_FILE
+
+    return icon 
+
+
 def generate_launcher_item(script):
     path = script.get('path', 'Missing path...') or 'Missing path...'
-    
+
     return ExtensionResultItem(
-        icon=script.get('icon', ICON_FILE) or ICON_FILE,
+        icon=get_icon(script.get('icon')),
         name=script.get('name', path) or path,
         description=script.get('description', path) or path,
-        on_enter=RunScriptAction(path)
+        on_enter=RunScriptAction(path) if path else DoNothingAction()
     )
 
 

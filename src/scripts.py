@@ -3,7 +3,7 @@ import os
 from shutil import copyfile
 
 from src.functions import clear_thumbnails, save_thumbnail
-from src.consts import SCRIPT_PATH, DEFAULT_CONFIG_PATH
+from src.consts import SCRIPT_PATH, DEFAULT_CONFIG_PATH, MAX_SCRIPTS
 
 class Scripts():
     def __init__(self, params):
@@ -29,8 +29,21 @@ class Scripts():
 
 
     def has_query(self):
-        return True
+        return len(self.query) > 0
+
+
+    def get_first_scripts(self):
+        return self.config[:MAX_SCRIPTS]
 
 
     def execute(self):
-        return self.config
+        scripts = []
+
+        for script in self.config:
+            name = script.get('name', None).lower()
+            path = script.get('path', None).lower()
+
+            if self.query.lower() in name or self.query.lower() in path:
+                scripts.append(script)
+      
+        return scripts[:MAX_SCRIPTS]
