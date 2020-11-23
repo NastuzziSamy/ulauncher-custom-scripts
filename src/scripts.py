@@ -2,7 +2,6 @@ import json
 import os
 from shutil import copyfile
 
-from src.functions import clear_thumbnails, save_thumbnail
 from src.consts import SCRIPT_PATH, DEFAULT_CONFIG_PATH, MAX_SCRIPTS
 
 class Scripts():
@@ -41,7 +40,7 @@ class Scripts():
 
         for script in self.config:
             name = script.get('name', None).lower()
-            path = script.get('path', None).lower()
+            path = script.get('script', None).lower()
 
             if self.query.lower() in name or self.query.lower() in path:
                 scripts.append(script)

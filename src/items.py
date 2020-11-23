@@ -42,7 +42,7 @@ def get_icon(icon):
 
 
 def generate_launcher_item(script):
-    path = script.get('path', 'Missing path...') or 'Missing path...'
+    path = script.get('script', 'Missing script...') or 'Missing script...'
 
     return ExtensionResultItem(
         icon=get_icon(script.get('icon')),

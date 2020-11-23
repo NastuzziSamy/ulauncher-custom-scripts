@@ -3,7 +3,7 @@
         "name": "No scripts",
         "description": "Select to edit scripts",
         "icon": null,
-        "path": "xdg-open ~/.config/ulauncher/scripts.json",
+        "script": "xdg-open ~/.config/ulauncher/scripts.json",
         "default_arguments": [
 
         ]
