@@ -5,7 +5,7 @@
         "icon": null,
         "script": "xdg-open ~/.config/ulauncher/scripts.json",
         "default_arguments": [
-
+            "~/.config/ulauncher/scripts.json"
         ]
     }
 ]
