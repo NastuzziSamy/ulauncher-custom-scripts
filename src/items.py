@@ -34,21 +34,22 @@ def get_icon(icon):
 
     if icon.startswith('~'):
         icon = os.path.expanduser(icon)
-    
+
     if not icon.startswith('/') or not os.path.exists(icon):
         return ICON_FILE
 
-    return icon 
+    return icon
 
 
-def generate_launcher_item(script):
-    path = script.get('script', 'Missing script...') or 'Missing script...'
+def generate_launcher_item(item):
+    script = item.get('script', 'Missing script...') or 'Missing script...'
+    description = item['description'] + ' • ' + script if 'description' in item else script
 
     return ExtensionResultItem(
-        icon=get_icon(script.get('icon')),
-        name=script.get('name', path) or path,
-        description=script.get('description', path) or path,
-        on_enter=RunScriptAction(path) if path else DoNothingAction()
+        icon=get_icon(item.get('icon')),
+        name=item.get('name', script) or script,
+        description=description,
+        on_enter=RunScriptAction(script) if script else DoNothingAction()
     )
 
 
