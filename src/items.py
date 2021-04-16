@@ -41,8 +41,14 @@ def get_icon(icon):
     return icon
 
 
-def generate_launcher_item(item):
+def generate_launcher_item(item, params):
     script = item.get('script', 'Missing script...') or 'Missing script...'
+
+    if len(params) > 0:
+        script += ' ' + ' '.join(params)
+    elif len(item.get('default_arguments', [])) > 0:
+        script += ' ' + ' '.join(item['default_arguments'])
+
     description = item['description'] + ' • ' + script if 'description' in item else script
 
     return ExtensionResultItem(
@@ -53,7 +59,7 @@ def generate_launcher_item(item):
     )
 
 
-def generate_launcher_items(results):
+def generate_launcher_items(results, params):
     return [
-        generate_launcher_item(script)
+        generate_launcher_item(script, params)
     for script in results]

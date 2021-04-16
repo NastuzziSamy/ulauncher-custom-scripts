@@ -18,23 +18,20 @@ class CustomSearchExtension(Extension):
 class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         query = event.get_argument() or str()
-
-        params = strip_list(query.split(' '))            
-
-        launcher = Scripts(params)
+        launcher = Scripts(strip_list(query.split(' ')))
 
         if not launcher.has_config():
             return RenderResultListAction(no_config_items())
 
         if launcher.has_query():
-            results = launcher.execute()
+            results, params = launcher.execute()
         else:
-            results = launcher.get_first_scripts()
+            results, params = launcher.get_first_scripts()
 
-        if not results:
+        if not results or len(results) == 0:
             return RenderResultListAction(no_results_item())
 
-        return RenderResultListAction(generate_launcher_items(results))
+        return RenderResultListAction(generate_launcher_items(results, params))
 
 
 if __name__ == "__main__":

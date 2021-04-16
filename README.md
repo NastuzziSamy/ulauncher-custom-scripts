@@ -56,7 +56,7 @@ Quick command to edit: `xdg-open ~/.config/ulauncher/scripts.json`.
 Default script configuration:
 ```json
 {
-  "name": "Edit scripts",
+  "name": "Edit_scripts",
   "description": "Select to edit scripts",
   "icon": null,
   "script": "xdg-open",
@@ -69,6 +69,9 @@ Default script configuration:
 ## Usage
 
 To launch a script, use the keyword (default is `sh`), then type/paste to search one particular script.
+
+The first word allow you to search through your scripts name.
+If no more text is given, default arguments are used to run the script. If not, use the text given as arguments.
 
 Just click/press ENTER to start script.
 

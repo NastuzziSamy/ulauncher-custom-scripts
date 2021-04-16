@@ -6,7 +6,8 @@ from src.consts import SCRIPT_PATH, DEFAULT_CONFIG_PATH, MAX_SCRIPTS
 
 class Scripts():
     def __init__(self, params):
-        self.query = ' '.join(params)
+        self.query = params.pop(0)
+        self.params = params
 
         if not os.path.exists(SCRIPT_PATH):
             self.create_default_config()
@@ -28,11 +29,11 @@ class Scripts():
 
 
     def has_query(self):
-        return len(self.query) > 0
+        return len(self.query.strip()) > 0
 
 
     def get_first_scripts(self):
-        return self.config[:MAX_SCRIPTS]
+        return self.config[:MAX_SCRIPTS], []
 
 
     def execute(self):
@@ -44,5 +45,5 @@ class Scripts():
 
             if self.query.lower() in name or self.query.lower() in path:
                 scripts.append(script)
-      
-        return scripts[:MAX_SCRIPTS]
+
+        return scripts[:MAX_SCRIPTS], self.params
