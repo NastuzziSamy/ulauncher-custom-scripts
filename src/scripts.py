@@ -6,7 +6,7 @@ from src.consts import SCRIPT_PATH, DEFAULT_CONFIG_PATH, MAX_SCRIPTS
 
 class Scripts():
     def __init__(self, params):
-        self.query = params.pop(0)
+        self.query = params.pop(0) if len(params) > 0 else ""
         self.params = params
 
         if not os.path.exists(SCRIPT_PATH):
