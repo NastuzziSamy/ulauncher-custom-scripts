@@ -53,17 +53,19 @@ To start them, you need to edit custom file `~/.config/ulauncher/scripts.json`.
 
 Quick command to edit: `xdg-open ~/.config/ulauncher/scripts.json`.
 
-Default script configuration:
+Default scripts configuration:
 ```json
-{
-  "name": "Edit_scripts",
-  "description": "Select to edit scripts",
-  "icon": null,
-  "script": "xdg-open",
-  "default_arguments": [
-    "~/.config/ulauncher/scripts.json"
-  ]
-}
+[
+    {
+        "name": "Edit_scripts",
+        "description": "Select to edit scripts",
+        "icon": null,
+        "script": "xdg-open",
+        "default_arguments": [
+            "~/.config/ulauncher/scripts.json"
+        ]
+    }
+]
 ```
 
 ## Usage
